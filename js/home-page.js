@@ -38,7 +38,7 @@ function renderHomeProducts() {
     grid.innerHTML = toShow.map(product => `
         <div class="showcase-card">
             <div class="showcase-image">
-                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
+                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'">
                 ${product.badge ? `<span class="showcase-badge">${product.badge}</span>` : ''}
             </div>
             <div class="showcase-info">

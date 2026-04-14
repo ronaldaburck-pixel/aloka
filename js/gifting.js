@@ -70,7 +70,7 @@ function renderGiftSection(gridId, products, sectionName) {
     grid.innerHTML = products.map(product => `
         <div class="gift-card" onclick="openProductModal('${product.id}')">
             <div class="gift-image-wrapper">
-                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
+                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'">
                 ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
             </div>
             <div class="gift-info">
