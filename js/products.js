@@ -99,7 +99,7 @@ function renderProducts(products) {
     console.log(`Rendering ${products.length} products`);
     
     grid.innerHTML = products.map(product => `
-        <div class="product-card" onclick="openProductModal('${product.id}')">
+        <div class="product-card visible" onclick="openProductModal('${product.id}')">
             <div class="product-image-wrapper">
                 <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.style.display='none'">
                 ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
