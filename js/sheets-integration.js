@@ -3,7 +3,7 @@
 // ============================================
 
 // ⚠️ IMPORTANT: Replace this URL with your Google Apps Script Web App URL
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby6IZ__1mjoE3iOqM08F84iw9a97B2J_Zy8_OPA_Chc41b7qIYQXCzs1Hdn2XD0_7ej/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby6lZ__1mjoEJiQgMO8F84iw9a970ZJ_Zy8_OPA_Chc41b7qIYQQC2slHdn2XD0_7gj/exec';
 
 // Global products array
 let allProducts = [];

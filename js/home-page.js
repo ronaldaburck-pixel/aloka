@@ -4,10 +4,15 @@
 
 function renderHomeProducts() {
     const grid = document.getElementById('productsGridHome');
+    const loader = document.getElementById('productsLoader');
+    
     if (!grid) {
         console.log('Products grid not found on this page');
         return;
     }
+    
+    // Show loader
+    if (loader) loader.classList.add('active');
     
     console.log('Rendering home page showcase...');
     
@@ -24,6 +29,8 @@ function renderHomeProducts() {
     
     if (toShow.length === 0) {
         grid.innerHTML = '<p style="text-align:center; padding:2rem; color:#999;">Products coming soon!</p>';
+        if (loader) loader.classList.remove('active');
+        grid.classList.add('loaded');
         return;
     }
     
@@ -42,6 +49,12 @@ function renderHomeProducts() {
     `).join('');
     
     console.log('✅ Home showcase rendered:', toShow.length, 'products');
+    
+    // Hide loader after minimum 2 seconds for smooth experience
+    setTimeout(() => {
+        if (loader) loader.classList.remove('active');
+        grid.classList.add('loaded');
+    }, 2000);
 }
 
 // No modal, no cart functionality on home page - it's just a showcase
