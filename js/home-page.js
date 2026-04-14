@@ -1,5 +1,5 @@
 // ============================================
-// HOME PAGE - FEATURED PRODUCTS RENDERING
+// HOME PAGE - SHOWCASE (NO PRICES, NO BUYING)
 // ============================================
 
 function renderHomeProducts() {
@@ -9,43 +9,39 @@ function renderHomeProducts() {
         return;
     }
     
-    console.log('Rendering home page products...');
+    console.log('Rendering home page showcase...');
     
-    // Get featured products (with badges) or first 8
-    const featured = allProducts.filter(p => p.badge && p.badge !== '' && p.active).slice(0, 8);
-    const toShow = featured.length > 0 ? featured : allProducts.filter(p => p.active).slice(0, 8);
+    // Filter products marked for home page display
+    const showcaseProducts = allProducts.filter(p => {
+        const showOnHome = p.showOnHome === true || p.showOnHome === 'TRUE' || p.show_on_home === true || p.show_on_home === 'TRUE';
+        return p.active && showOnHome;
+    });
+    
+    console.log(`Found ${showcaseProducts.length} products for home showcase`);
+    
+    // If no products marked, show first 6 active products
+    const toShow = showcaseProducts.length > 0 ? showcaseProducts : allProducts.filter(p => p.active).slice(0, 6);
     
     if (toShow.length === 0) {
-        grid.innerHTML = '<p style="text-align:center; padding:2rem; color:#999;">No products available yet. Coming soon!</p>';
+        grid.innerHTML = '<p style="text-align:center; padding:2rem; color:#999;">Products coming soon!</p>';
         return;
     }
     
+    // Render showcase - NO PRICES, NO BUY BUTTONS, just beautiful display
     grid.innerHTML = toShow.map(product => `
-        <div class="product-card-home" onclick="openProductModalHome('${product.id}')">
-            <div class="product-image-home">
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
-                ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+        <div class="showcase-card">
+            <div class="showcase-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
+                ${product.badge ? `<span class="showcase-badge">${product.badge}</span>` : ''}
             </div>
-            <div class="product-info-home">
-                <div class="product-id-home">${product.id}</div>
-                <h3 class="product-name-home">${product.name}</h3>
-                <p class="product-price-home">${formatIndianRupee(product.price)}</p>
+            <div class="showcase-info">
+                <h3 class="showcase-name">${product.name}</h3>
+                ${product.fragrance ? `<p class="showcase-desc">${product.fragrance}</p>` : ''}
             </div>
         </div>
     `).join('');
     
-    console.log('Rendered', toShow.length, 'products on home page');
+    console.log('✅ Home showcase rendered:', toShow.length, 'products');
 }
 
-// Open product modal
-function openProductModalHome(productId) {
-    const product = allProducts.find(p => p.id === productId);
-    if (!product) return;
-    
-    // Use existing modal from script.js if available
-    if (typeof openProductModal === 'function') {
-        openProductModal(product);
-    } else {
-        alert(`${product.name} - ${formatIndianRupee(product.price)}\n\nClick "View All Products" to see full details!`);
-    }
-}
+// No modal, no cart functionality on home page - it's just a showcase
