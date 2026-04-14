@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Aloka by Rutushree | Premium Candles & Home Decor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="img/logo.png" alt="Aloka by Rutushree" class="logo-image">
+                    </a>
+                </div>
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="products.html" class="nav-link active">Shop</a></li>
+                        <li><a href="index.html#about" class="nav-link">About Us</a></li>
+                        <li><a href="gifting.html" class="nav-link">Gifts</a></li>
+                        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="cart-icon" id="cartIcon" aria-label="View orders">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Page Hero -->
+    <section class="products-hero">
+        <div class="container">
+            <h1 class="products-hero-title">Our Shop</h1>
+            <p class="products-hero-subtitle">Handcrafted with love, made for your home</p>
+        </div>
+    </section>
+
+    <!-- Category Selection or Product Display -->
+    <section class="shop-content" id="shopContent">
+        <div class="container">
+            <!-- Category Grid (shown when no category selected) -->
+            <div class="categories-grid" id="categoriesGrid">
+                <div class="category-card" data-category="candles">
+                    <div class="category-card-image">
+                        <img src="img/1.jpg" alt="Candles">
+                    </div>
+                    <h2 class="category-card-title">Candles</h2>
+                    <p class="category-card-description">Premium handcrafted soy candles in various sizes and fragrances</p>
+                    <button type="button" class="btn btn-primary view-collection-btn" data-category="candles">View Collection</button>
+                </div>
+                
+                <div class="category-card" data-category="juteBags">
+                    <div class="category-card-image">
+                        <img src="img/2.jpg" alt="Jhute Bags">
+                    </div>
+                    <h2 class="category-card-title">Jhute Bags</h2>
+                    <p class="category-card-description">Eco-friendly jute bags combining sustainability with style</p>
+                    <button type="button" class="btn btn-primary view-collection-btn" data-category="juteBags">View Collection</button>
+                </div>
+                
+                <div class="category-card" data-category="concrete">
+                    <div class="category-card-image">
+                        <img src="img/3.jpg" alt="Concrete Home Decor">
+                    </div>
+                    <h2 class="category-card-title">Concrete Home Decor</h2>
+                    <p class="category-card-description">Modern concrete pieces that add industrial elegance</p>
+                    <button type="button" class="btn btn-primary view-collection-btn" data-category="concrete">View Collection</button>
+                </div>
+            </div>
+
+            <!-- Category Header (shown when category selected) -->
+            <div class="category-header" id="categoryHeader" style="display: none;">
+                <button type="button" class="btn-back" id="backToCategories">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Categories
+                </button>
+                <h2 class="category-title" id="categoryTitle"></h2>
+                <p class="category-description" id="categoryDescription"></p>
+            </div>
+
+            <!-- Products Grid (shown when category selected) -->
+            <div class="products-grid" id="productsGrid" style="display: none;">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Image Lightbox -->
+    <div class="image-lightbox" id="imageLightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+            <div class="lightbox-info" id="lightboxInfo">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDetails"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal (for Buy Now) -->
+    <div class="modal" id="productModal">
+        <div class="modal-overlay" id="productModalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="productModalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-product-image" id="modalProductImage">
+                    <div class="product-image-placeholder">
+                        <img src="" alt="" id="modalImage">
+                    </div>
+                </div>
+                <div class="modal-product-info">
+                    <h2 class="modal-product-name" id="modalProductName"></h2>
+                    <p class="modal-product-fragrance" id="modalProductFragrance"></p>
+                    <p class="modal-product-price" id="modalProductPrice"></p>
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="quantityDecrease">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button class="quantity-btn" id="quantityIncrease">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-total">
+                        <strong>Total: <span id="modalTotal">₹0</span></strong>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" id="confirmOrder">Confirm Order</button>
+                        <button class="btn btn-secondary" id="cancelOrder">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart/Orders Modal -->
+    <div class="modal" id="ordersModal">
+        <div class="modal-overlay" id="ordersModalOverlay"></div>
+        <div class="modal-content modal-orders">
+            <button class="modal-close" id="ordersModalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <h2 class="modal-title">Your Orders</h2>
+                <div class="orders-list" id="ordersList">
+                    <p class="no-orders">No orders yet. Start shopping!</p>
+                </div>
+                <div class="orders-actions" id="ordersActions" style="display: none;">
+                    <button class="btn btn-secondary" id="clearCart">Clear All Orders</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="success-notification" id="successNotification">
+        <p>Order placed (Demo). Payment integration will be added later.</p>
+    </div>
+
+    
+    <script src="js/products.js"></script>
+    <script src="js/sheets-integration.js"></script>
+    <script src="js/cart-system.js"></script>
+</body>
+</html>
